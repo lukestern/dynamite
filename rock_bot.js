@@ -1,7 +1,7 @@
-class Bot {
+class RockBot {
     makeMove(gamestate) {
         return 'R';
     }
 }
 
-module.exports = new Bot();
+module.exports = new RockBot();
