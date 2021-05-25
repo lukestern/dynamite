@@ -48,14 +48,10 @@ class Bot {
             if (previousRound.p1 === "D") {
                 return "dynamiteDraw"
             }
-            if (previousRound.p1 === "W") {
-                return "waterDraw"
-            }
             return "draw"
         } else {
             return "notDraw"
         }
-        // Look back at last 2 rounds if 2 D the use W
     }
 
     getP2History(gamestate) {
@@ -67,16 +63,16 @@ class Bot {
     }
 
     analyseHistory(history) {
-        let previousFiveRounds = history.slice((history.length - 3), history.length)
-        if (previousFiveRounds.every((currentValue) => currentValue === "R")) {
+        let previousThreeRounds = history.slice((history.length - 3), history.length)
+        if (previousThreeRounds.every((currentValue) => currentValue === "R")) {
             return "P"
-        } else if (previousFiveRounds.every((currentValue) => currentValue === "P")) {
+        } else if (previousThreeRounds.every((currentValue) => currentValue === "P")) {
             return "S"
-        } else if (previousFiveRounds.every((currentValue) => currentValue === "S")) {
+        } else if (previousThreeRounds.every((currentValue) => currentValue === "S")) {
             return "R"
-        } else if (previousFiveRounds.every((currentValue) => currentValue === "D")) {
+        } else if (previousThreeRounds.every((currentValue) => currentValue === "D")) {
             return "W"
-        } else if (previousFiveRounds.every((currentValue) => currentValue === "W")) {
+        } else if (previousThreeRounds.every((currentValue) => currentValue === "W")) {
             return this.choice[Math.floor(Math.random() * this.choice.length)];
         } else {
             return "Select"
